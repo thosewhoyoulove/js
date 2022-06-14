@@ -3,7 +3,7 @@
  * @Author: 曹俊
  * @Date: 2022-06-08 17:00:36
  * @LastEditors: 曹俊
- * @LastEditTime: 2022-06-08 17:17:47
+ * @LastEditTime: 2022-06-14 10:44:07
 -->
 # async函数和await表达式
 
@@ -25,4 +25,4 @@ async function fn(){
 + ### await必须写在async函数中
 + ### await右侧的表达式一般为promise对象
 + ### await返回的是promise成功的值
-+ ### await的promise失败了，就会抛出异常，需要通过try...catch捕获处理
++ ### await的promise失败了，就会抛出异常，需要通过try...catch捕获处理 
