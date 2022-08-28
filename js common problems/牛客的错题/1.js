@@ -31,4 +31,3 @@ console.log(assert(f)); //false
 console.log(assert(g)); //false
 console.log(assert(h)); //false
 console.log(assert(i)); //false
-console.log(assert(j)); //false
