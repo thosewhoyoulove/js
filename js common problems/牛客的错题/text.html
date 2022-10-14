@@ -1,0 +1,41 @@
+<!--
+ * @Description: 
+ * @Author: 曹俊
+ * @Date: 2022-08-31 18:52:06
+ * @LastEditors: 曹俊
+ * @LastEditTime: 2022-08-31 18:53:00
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                }, delay);
+            };
+        }
+
+        //测试
+        function task() {
+            console.log("run task");
+        }
+        const debounceTask = debounce(task, 1000);
+        window.addEventListener("scroll", debounceTask);
+    </script>
+</body>
+
+</html>
