@@ -3,166 +3,87 @@
  * @Author: 曹俊
  * @Date: 2022-06-08 16:29:27
  * @LastEditors: 曹俊
- * @LastEditTime: 2022-07-07 17:28:51
+ * @LastEditTime: 2022-10-22 20:20:39
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        div {
-            width: 160px;
-            height: 80px;
-            padding: 20px;
-            border: 8px solid red;
-            background: yellow;
-        }
-        
-        .content-box {
-            box-sizing: content-box;
-            /* Total width: 160px + (2 * 20px) + (2 * 8px) = 216px
-     Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
-     Content box width: 160px
-     Content box height: 80px */
-        }
-        
-        .border-box {
-            box-sizing: border-box;
-            /* Total width: 160px
-     Total height: 80px
-     Content box width: 160px - (2 * 20px) - (2 * 8px) = 104px
-     Content box height: 80px - (2 * 20px) - (2 * 8px) = 24px */
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>更新头像</title>
 </head>
 
 <body>
-    <div class="content-box">Content box</div>
-    <br>
-    <div class="border-box">Border box</div>
+    <input id="file" type="file" />
+    <img id="avatar" style="height: 200px; width: 200px; border-radius: 50%" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js
+    "></script>
     <script>
-        // console.log('script start') // 1
-        // async function async1() {
-        //     await async2()
-        //     console.log('async1 end') //5
-        //     console.log('11111'); //6 相当于被阻塞了
-        // }
-        // async function async2() {
-        //     console.log('async2 end') // 2
-        // }
-        // async1()
+        const phone = ''
+        const password = ''
+        let cookieToken = 'MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/weapi/clientlog; HTTPOnly;MUSIC_SNS=; Max-Age=0; Expires=Sat, 22 Oct 2022 06:42:20 GMT; Path=/;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/api/feedback; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/eapi/feedback; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/eapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/wapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/openapi/clientlog; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/neapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/wapi/feedback; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/api/clientlog; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/api/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/neapi/feedback; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/eapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/neapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/weapi/feedback; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/wapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/weapi/clientlog; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/openapi/clientlog; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/eapi/feedback; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/wapi/feedback; HTTPOnly;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/weapi/feedback; HTTPOnly;MUSIC_U=84d78d610620deeffc685364c551c1f72b502cd18b20c127085ddc2da8683949993166e004087dd3f8db339f20e4878baa85da1299fe494dbc535127c3ab160a920ce1166f234d37d4dbf082a8813684; Max-Age=15552000; Expires=Thu, 20 Apr 2023 06:42:20 GMT; Path=/; HTTPOnly;__csrf=00c640961c390fc319839d101e56fe62; Max-Age=1296010; Expires=Sun, 06 Nov 2022 06:42:30 GMT; Path=/;;MUSIC_A_T=1512223712795; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/neapi/feedback; HTTPOnly;MUSIC_R_T=1512224097393; Max-Age=2147483647; Expires=Thu, 09 Nov 2090 09:56:27 GMT; Path=/api/feedback; HTTPOnly'
 
-        // // setTimeout(function() {
-        // //         console.log('setTimeout')
-        // //     }, 0) //异步：宏任务
+        main()
 
-        // new Promise(resolve => {
-        //         console.log('Promise') //3
-        //         resolve()
-        //     })
-        //     .then(function() {
-        //         console.log('promise1') //7
-        //     })
-        //     .then(function() {
-        //         console.log('promise2') //8
-        //     }) // new Promise是同步任务，then回调函数是异步微任务
+        async function main() {
+            document.querySelector('input[type="file"]').addEventListener(
+                'change',
+                function(e) {
+                    var file = this.files[0]
+                    console.log(file);
+                    upload(file)
+                },
+                false,
+            )
+            const res = await axios({
+                url: `/user/detail?uid=32953014&timestamp=${Date.now()}`,
+                withCredentials: true, //关键
+            })
+            document.querySelector('#avatar').src = res.data.profile.avatarUrl
+        }
+        async function login() {
+            const res = await axios({
+                url: `/login/cellphone?phone=${phone}&password=${password}`,
+                withCredentials: true, //关键
+            })
+            cookieToken = res.data.cookie
+        }
+        async function upload(file) {
+            let formData = new FormData()
+            formData.append('imgFile', file)
+            console.log('imgFile');
+            const imgSize = await getImgSize(file)
+            const res = await axios({
+                method: 'post',
+                withCredentials: true,
+                url: `https://www.caojunshuaige.top/avatar/upload?cookie=${encodeURIComponent(cookieToken)}&imgX=0&imgY=0&timestamp=${Date.now()}`,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                data: formData,
+            })
+            document.querySelector('#avatar').src = res.data.data.url
+        }
 
-        // console.log('script end') //4
-
-        // async function fn() {
-        //     return new Promise((resolve, reject) => {
-        //         resolve('err')
-        //     })
-        // }
-        // const result = fn()
-        // console.log(result);
-
-
-        // const map = new Map([
-        //     ['F', 'no'],
-        //     ['T', 'yes'],
-        // ]);
-        // console.log(map.keys());
-        // for (let key of map.keys()) {
-        //     console.log(key);
-        // }
-        // console.log(null instanceof Object);
-
-
-        // const map = new Map([
-        //     ['name', '张三'],
-        //     ['title', 'Author']
-        // ]);
-
-        // console.log(map.size) // 2
-        // console.log(map.has('张三')) // true
-        // console.log(map.get('name')) // "张三"
-        // console.log(map.has('Author')) // true
-        // console.log(map.get('title')) // "Author"
-
-        // function Person(name, nation) {
-        //     this.name = name
-        //     this.nation = nation
-        //         // this.introduce = function() {
-        //         //     console.log(`${this.name}的国籍是${this.nation}`)
-        //         // }
-        // }
-        // Person.prototype.introduce = function() {
-        //     console.log(`${this.name}的国籍是${this.nation}`)
-        // }
-        // var Dad = new Person("大明", "外国")
-        // var Son = new Person("小明", "外国")
-        //     // console.log(Dad)
-        //     // console.log(Son)
-        //     // console.log(Dad.introduce === Son.introduce)
-        //     // Dad.nation = "中国"
-        //     // console.log(Dad)
-        //     // console.log(Son)
-        //     // console.log(Dad.introduce === Son.introduce)
-        // console.log(Person.prototype);
-        // console.log(typeof(Dad.__proto__))
-        // console.log(Object.prototype.__proto__);
-        // function Test(name) {
-        //     this.name = name
-        //     console.log(this) // Test { name: 'yck' }
-        //         // return {
-        //         //     age: 26
-        //         // }
-        // }
-        // const t = new Test('yck')
-        // console.log(t) // { age: 26 }
-        // console.log(t.name) // 'undefined'
-
-        // const firstUniqChar = str => {
-        //     if (!str) return ' ';
-        //     const m = new Map();
-        //     for (let s of str) {
-        //         m.set(s, (m.get(s) || 0) + 1);
-        //         console.log(m);
-        //     }
-
-        //     for (let s of m) {
-        //         // if (s[1] === 1) return s[0];
-        //         console.log(s);
-        //     }
-
-        //     return ' ';
-        // };
-
-        // firstUniqChar('abaccdeff')
-        console.log(__dirname);
+        function getImgSize(file) {
+            console.log(file, '这是getImage里面file');
+            return new Promise((resolve, reject) => {
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = function(theFile) {
+                    let image = new Image()
+                    image.src = theFile.target.result
+                    image.onload = function() {
+                        resolve({
+                            width: this.width,
+                            height: this.height,
+                        })
+                    }
+                }
+            })
+        }
     </script>
 </body>
-
-</html>
-</body>
-
-</html>
-
-</html>
 
 </html>
